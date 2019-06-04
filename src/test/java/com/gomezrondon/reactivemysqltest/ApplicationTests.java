@@ -16,6 +16,7 @@ import java.util.List;
 
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertNotNull;
+import static org.springframework.http.HttpMethod.PUT;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest(classes = Application.class, webEnvironment= SpringBootTest.WebEnvironment.RANDOM_PORT)
@@ -25,7 +26,7 @@ public class ApplicationTests {
 	private TestRestTemplate restTemplate;
 
 	@Test
-	public void firstTest()   {
+	public void testFindAllThenFindOneProduct()   {
 		ResponseEntity<List<Product>> result = restTemplate.exchange("/products", HttpMethod.GET,null, new ParameterizedTypeReference<List<Product>>(){});
 		List<Product> body = result.getBody();
 
@@ -43,5 +44,16 @@ public class ApplicationTests {
 	}
 
 
+	@Test
+	public void testUpdateProduct()   {
+
+		Product product = new Product(69, "Cafe Grande Extra", 5.00);
+
+		ResponseEntity<Product> result = restTemplate.postForEntity("/products/69", product, Product.class);
+
+		Product body = result.getBody();
+		assertEquals(HttpStatus.CREATED, result.getStatusCode());
+
+	}
 
 }

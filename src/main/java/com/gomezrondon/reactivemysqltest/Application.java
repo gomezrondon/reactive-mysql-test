@@ -28,13 +28,13 @@ public class Application {
 					new Product(0, "Cafe tetero", 2.0)
 			).flatMap(prodRepo::save);
 
-
+/*
 			prodRepo.deleteAll()
 					.thenMany(productFlux)
 					.thenMany(prodRepo.findAll())
 					.subscribe();
 					//.subscribe(System.out::println);
-
+*/
 
 			/*
 			//This works

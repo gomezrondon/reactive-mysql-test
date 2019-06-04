@@ -29,6 +29,7 @@ public class RoutesConfiguration {
                             .andNest(path("/{id}"),
                                 route(method(HttpMethod.GET), handler::getProduct))
                                 .andRoute(method(HttpMethod.DELETE),handler::deleteProduct)
+                                .andRoute(method(HttpMethod.PUT),handler::updateProduct)
                                 )
         );
     }
