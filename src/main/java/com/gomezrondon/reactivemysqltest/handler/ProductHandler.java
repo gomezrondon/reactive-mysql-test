@@ -56,21 +56,36 @@ public class ProductHandler {
                         .body(repository.save(product), Product.class));
     }
 
-/*
+
     public Mono<ServerResponse> updateProduct(ServerRequest request){
         Long id = Long.valueOf(request.pathVariable("id"));
-        Mono<Product> exitingProductMono = this.repository.findAllById(id);
+        Mono<Product> exitingProductMono = this.repository.findById(id);
         Mono<Product> productMono = request.bodyToMono(Product.class);
 
         Mono<ServerResponse> notFound = ServerResponse.notFound().build();
 
         return productMono.zipWith(exitingProductMono,
-                (product,existingProduct) -> new Product(existingProduct.getId(),product.getName(), product.getPrice()))
+                (product, existingProduct) -> new Product(existingProduct.getId(), product.getName(), product.getPrice()))
                 .flatMap(product -> ServerResponse.ok()
-                .contentType(MediaType.APPLICATION_JSON)
-                .body(repository.save(product), Product.class))
-
+                                .contentType(MediaType.APPLICATION_JSON)
+                                .body(repository.save(product), Product.class))
+                .switchIfEmpty(notFound);
 
     }
-*/
+
+    public Mono<ServerResponse> deleteProduct(ServerRequest request){
+        Long id = Long.valueOf(request.pathVariable("id"));
+
+        Mono<Product> productMono = this.repository.findById(id);
+        Mono<ServerResponse> notFound = ServerResponse.notFound().build();
+
+        return productMono
+                .flatMap(product ->
+                        ServerResponse.ok()
+                                .build(repository.delete(product)))
+                .switchIfEmpty(notFound);
+
+    }
+
+
 }

@@ -7,8 +7,4 @@ import org.springframework.stereotype.Repository;
 import reactor.core.publisher.Mono;
 
 @Repository
-public interface ProductRepository extends ReactiveCrudRepository<Product, Long> {
-
-    @Query("select id, name, price from product where id = $1")
-    Mono<Product> findById(Long id);
-}
+public interface ProductRepository extends ReactiveCrudRepository<Product, Long> {}
