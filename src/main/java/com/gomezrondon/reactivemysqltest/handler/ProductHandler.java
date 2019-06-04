@@ -87,5 +87,10 @@ public class ProductHandler {
 
     }
 
+    public Mono<ServerResponse> deleteAllProduct(ServerRequest request){
+        return ServerResponse.ok().build(repository.deleteAll());
+
+    }
+
 
 }
