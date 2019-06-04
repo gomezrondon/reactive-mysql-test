@@ -4,6 +4,7 @@ import com.github.jasync.r2dbc.mysql.JasyncConnectionFactory;
 import com.github.jasync.sql.db.mysql.pool.MySQLConnectionFactory;
 import com.github.jasync.sql.db.mysql.util.URLParser;
 import com.gomezrondon.reactivemysqltest.repositories.OrderRepository;
+import com.gomezrondon.reactivemysqltest.repositories.ProductRepository;
 import io.r2dbc.spi.ConnectionFactory;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.r2dbc.config.AbstractR2dbcConfiguration;
@@ -13,7 +14,7 @@ import java.nio.charset.StandardCharsets;
 
 
 @Configuration
-@EnableR2dbcRepositories(basePackageClasses=OrderRepository.class)
+@EnableR2dbcRepositories(basePackageClasses={OrderRepository.class, ProductRepository.class})
 public class Config extends AbstractR2dbcConfiguration {
     @Override
     public ConnectionFactory connectionFactory() {
