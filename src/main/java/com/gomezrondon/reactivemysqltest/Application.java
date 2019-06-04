@@ -1,7 +1,6 @@
 package com.gomezrondon.reactivemysqltest;
 
 
-import com.gomezrondon.reactivemysqltest.entities.Order;
 import com.gomezrondon.reactivemysqltest.entities.Product;
 import com.gomezrondon.reactivemysqltest.repositories.OrderRepository;
 import com.gomezrondon.reactivemysqltest.repositories.ProductRepository;
@@ -23,9 +22,9 @@ public class Application {
 	ApplicationRunner run(OrderRepository repository, ProductRepository prodRepo){
 		return args -> {
 			Flux<Product> productFlux = Flux.just(
-					new Product("Cafe Grande", 2.99),
-					new Product("Cafe pequeno", 0.99),
-					new Product("Cafe tetero", 2.0)
+					new Product(0, "Cafe Grande", 2.99),
+					new Product(0, "Cafe pequeno", 0.99),
+					new Product(0, "Cafe tetero", 2.0)
 			).flatMap(prodRepo::save);
 
 			prodRepo.deleteAll()
