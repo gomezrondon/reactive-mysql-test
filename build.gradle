@@ -28,7 +28,7 @@ repositories {
 
 dependencies {
 	compile group: 'org.springframework.data', name: 'spring-data-r2dbc', version: '1.0.0.gh-75-SNAPSHOT'
-	compile group: 'com.github.jasync-sql', name: 'jasync-r2dbc-mysql', version: '0.9.32'
+	compile group: 'com.github.jasync-sql', name: 'jasync-r2dbc-mysql', version: '1.0.5'
 
 	implementation 'org.springframework.boot:spring-boot-starter-webflux'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
